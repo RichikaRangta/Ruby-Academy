@@ -103,7 +103,6 @@ END
   it "does interpret some escape characters with single quotes though" do
     string = '\\\\'
     expect( string.size ).to eq( 2 )
-    expect( string.size ).to eq( 4 )
   end
 
   it "can interpolate variable using double quotes" do

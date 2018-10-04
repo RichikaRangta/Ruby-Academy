@@ -28,7 +28,21 @@
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  if dice.size == 0
+    0
+  else
+    dice.map do |num|
+      if num == 1
+
+      elsif num == 5
+
+      end
+    end
+  # elsif dice.find { |num| num == 5 }
+  #   50
+  # elsif dice.find { |num| num == 1 }
+  #   100
+  end
 end
 
 RSpec.describe "scorign a game of greed" do
@@ -73,4 +87,3 @@ RSpec.describe "scorign a game of greed" do
   end
 
 end
-
