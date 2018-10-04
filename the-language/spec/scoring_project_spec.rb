@@ -28,24 +28,38 @@
 # Your goal is to write the score method.
 
 def score(dice)
-  if dice.size == 0
-    0
-  else
-    dice.map do |num|
-      if num == 1
+  score = 0
 
-      elsif num == 5
+  options = dice.group_by { |i| i }
 
+  options.keys.each do |option|
+    current_option = options[option]
+
+    if current_option.size > 2
+      if current_option.first == 1
+        score += 1000
+        if current_option.size > 3
+          score += score(current_option.reject.with_index { |v, i| i < 3 })
+        end
+      else
+        score += current_option.first * 100
+        if current_option.size > 3
+          score += score(current_option.reject.with_index { |v, i| i < 3 })
+        end
+      end
+    else
+      if current_option.first == 1
+        score += 100 * current_option.size
+      elsif current_option.first == 5
+        score += 50 * current_option.size
       end
     end
-  # elsif dice.find { |num| num == 5 }
-  #   50
-  # elsif dice.find { |num| num == 1 }
-  #   100
   end
+
+  score
 end
 
-RSpec.describe "scorign a game of greed" do
+RSpec.describe "scoring a game of greed" do
   it "scores an empty list as 0" do
     expect( score([]) ).to eq( 0 )
   end
