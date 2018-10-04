@@ -1,8 +1,13 @@
 # Implement a DiceSet Class here:
 #
-# class DiceSet
-#   code ...
-# end
+class DiceSet
+  attr_reader :values
+
+  def roll(int)
+    @values = []
+    int.times { |i| @values << rand(6) + 1 }
+  end
+end
 #
 
 RSpec.describe "dice set" do
@@ -47,6 +52,9 @@ RSpec.describe "dice set" do
     # If the rolls are random, then it is possible (although not
     # likely) that two consecutive rolls are equal.  What would be a
     # better way to test this?
+
+    # Test more rolls?  Multiple rolls could technically still be the same but
+    # the more rolls tested the less likely the test would fail
   end
 
   it "can roll different numbers of dice" do
