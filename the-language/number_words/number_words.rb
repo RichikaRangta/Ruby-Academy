@@ -1,3 +1,5 @@
 def number_words(int)
-  "one"
+  singles = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+
+  singles[int]
 end
