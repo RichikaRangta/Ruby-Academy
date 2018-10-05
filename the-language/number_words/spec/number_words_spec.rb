@@ -26,7 +26,8 @@ RSpec.describe "number_words" do
     expect(number_words(19)).to eq("nineteen")
   end
 
-  it "returns the number 20 as a string" do
+  it "returns the numbers 20 to 21 as a string" do
     expect(number_words(20)).to eq("twenty")
+    expect(number_words(21)).to eq("twenty one")
   end
 end
