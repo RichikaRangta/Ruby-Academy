@@ -12,4 +12,8 @@ RSpec.describe "number_words" do
     expect(number_words(8)).to eq("eight")
     expect(number_words(9)).to eq("nine")
   end
+
+  it "returns the number 10 as a string" do
+    expect(number_words(10)).to eq("ten")
+  end
 end
