@@ -15,14 +15,14 @@ RSpec.describe "number_words" do
 
   it "returns the numbers 10 to 19 as strings" do
     expect(number_words(10)).to eq("ten")
-    expect(number_words(10)).to eq("eleven")
-    expect(number_words(10)).to eq("twelve")
-    expect(number_words(10)).to eq("thirteen")
-    expect(number_words(10)).to eq("fourteen")
-    expect(number_words(10)).to eq("fifteen")
-    expect(number_words(10)).to eq("sixteen")
-    expect(number_words(10)).to eq("seventeen")
-    expect(number_words(10)).to eq("eighteen")
-    expect(number_words(10)).to eq("nineteen")
+    expect(number_words(11)).to eq("eleven")
+    expect(number_words(12)).to eq("twelve")
+    expect(number_words(13)).to eq("thirteen")
+    expect(number_words(14)).to eq("fourteen")
+    expect(number_words(15)).to eq("fifteen")
+    expect(number_words(16)).to eq("sixteen")
+    expect(number_words(17)).to eq("seventeen")
+    expect(number_words(18)).to eq("eighteen")
+    expect(number_words(19)).to eq("nineteen")
   end
 end
