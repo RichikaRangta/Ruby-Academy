@@ -39,7 +39,16 @@ RSpec.describe "number_words" do
     expect(number_words(29)).to eq("twenty nine")
   end
 
-  it "returns the number 30 as a string" do
+  it "returns the numbers 30 to 31 as a string" do
     expect(number_words(30)).to eq("thirty")
+    expect(number_words(31)).to eq("thirty one")
+    expect(number_words(32)).to eq("thirty two")
+    expect(number_words(33)).to eq("thirty three")
+    expect(number_words(34)).to eq("thirty four")
+    expect(number_words(35)).to eq("thirty five")
+    expect(number_words(36)).to eq("thirty six")
+    expect(number_words(37)).to eq("thirty seven")
+    expect(number_words(38)).to eq("thirty eight")
+    expect(number_words(39)).to eq("thirty nine")
   end
 end
