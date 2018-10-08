@@ -3,7 +3,7 @@ def number_words(int)
   doubles = { 10 => "ten", 11 => "eleven", 12 => "twelve", 13 => "thirteen", 14 => "fourteen", 15 => "fifteen", 16 => "sixteen", 17 => "seventeen", 18 => "eighteen", 19 => "nineteen" }
   wholes = { 20 => "twenty" }
 
-  testing = { 20 => ["twenty"].push(*singles.reject { |i| i.empty? }) }
+  above = { 20 => ["twenty"].push(*singles.reject { |i| i.empty? }) }
 
 
   if int < 10
@@ -13,9 +13,9 @@ def number_words(int)
     doubles[int]
   else
     if int % 10 == 0
-      testing[20][int % 10]
+      above[20][int % 10]
     else
-      "#{testing[20][0]} #{testing[20][int % 10]}"
+      "#{above[20][0]} #{above[20][int % 10]}"
     end
   end
 end
