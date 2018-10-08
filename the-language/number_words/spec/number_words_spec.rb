@@ -38,4 +38,8 @@ RSpec.describe "number_words" do
     expect(number_words(28)).to eq("twenty eight")
     expect(number_words(29)).to eq("twenty nine")
   end
+
+  it "returns the number 30 as a string" do
+    expect(number_words(30)).to eq("thirty")
+  end
 end
