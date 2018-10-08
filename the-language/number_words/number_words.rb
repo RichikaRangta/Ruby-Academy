@@ -8,17 +8,21 @@ def number_words(int)
     30 => ["thirty"].push(*singles.reject { |i| i.empty? })
   }
 
-
   if int < 10
+    # 1-9
     singles[int]
-
   elsif int < 20
+    # 10 - 19
     doubles[int]
   else
+    firstChar = int.to_s.chars.first().to_i * 10
+
     if int % 10 == 0
+      # 20+ 'ten' numbers
       above[int][int % 10]
     else
-      "#{above[20][0]} #{above[20][int % 10]}"
+      # everything else
+      "#{above[firstChar][0]} #{above[firstChar][int % 10]}"
     end
   end
 end
