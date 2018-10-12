@@ -9,21 +9,24 @@ class Bottles
 
   def verse(number)
     bottle_number = BottleNumber.create(number)
-    next_bottle_number = BottleNumber.create(number - 1)
+    next_bottle_number = bottle_number.successor
     <<~VERSE
-      #{bottle_number.amount_left(number).capitalize} #{bottle_number.recepticle(number)} of beer on the wall, #{bottle_number.amount_left(number)} #{bottle_number.recepticle(number)} of beer.
-      #{bottle_number.action} #{next_bottle_number.recepticle(number)} of beer on the wall.
-      VERSE
+      #{bottle_number.to_s.capitalize} of beer on the wall, #{bottle_number.to_s} of beer.
+      #{bottle_number.action}, #{next_bottle_number.to_s} of beer on the wall.
+    VERSE
   end
 
   class BottleNumber
     def self.create(number)
-      if number == 0
-        BottleNumber0.new(number)
-      elsif number == 1
-        BottleNumber1.new(number)
-      else
-        BottleNumber.new(number)
+      case number
+        when 0
+          BottleNumber0.new(number)
+        when 1
+          BottleNumber1.new(number)
+        when 6
+          BottleNumber6.new(number)
+        else
+          BottleNumber.new(number)
       end
     end
 
@@ -31,48 +34,62 @@ class Bottles
       @number = number
     end
 
-    def recepticle(number)
-      "bottles"
+    def action
+      "Take #{pronoun} down and pass it around"
+    end
+
+    def amount_left
+      @number.to_s
     end
 
     def pronoun
-      if @number == 1
-        "it"
-      else
-        "one"
-      end
+      "one"
     end
 
-    def amount_left(number)
-      if number == 0
-        "no more"
-      else
-        number.to_s
-      end
+    def recepticle
+      "bottles"
     end
 
-    def action
-      "Take #{pronoun} down and pass it around, #{amount_left(predecessor)}"
+    def successor
+      BottleNumber.create(@number - 1)
     end
 
-    def predecessor
-      @number - 1
+    def to_s
+      "#{amount_left} #{recepticle}"
     end
   end
 
   class BottleNumber0 < BottleNumber
     def action
-      "Go to the store and buy some more, 99"
+      "Go to the store and buy some more"
     end
 
-    def predecessor
-      99
+    def amount_left
+      "no more"
+    end
+
+    def successor
+      BottleNumber.create(99)
     end
   end
 
   class BottleNumber1 < BottleNumber
-    def recepticle(number)
+    def pronoun
+      "it"
+    end
+
+    def recepticle
       "bottle"
+    end
+  end
+
+  class BottleNumber6 < BottleNumber
+    def amount_left
+      "one"
+    end
+
+    def recepticle
+      "six pack"
     end
   end
 end
