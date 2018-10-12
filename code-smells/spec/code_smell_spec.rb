@@ -7,7 +7,7 @@ RSpec.describe do
   end
 
   it "creates a new order which is due a refund" do
-    subject = Order.new(9, 123)
-    expect(subject.to_s).to eq("123 is due a refund")
+    subject = Order.new(9, 456)
+    expect(subject.to_s).to eq("456 is due a refund")
   end
 end
