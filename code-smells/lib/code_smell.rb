@@ -1,47 +1,31 @@
-class Person
-  def initialize(name)
-    @name = name
+class Order
+  def initialize(amount, id)
+    @amount = amount
+    @id = id
   end
 
-  def phone_number
-    PhoneNumber.new(@name)
-  end
+  def due_refund
+    is_due_refund = Refund.new(@amount, @id).due_refund
 
-  def address
-    Address.new(@name)
+    if is_due_refund
+      "is due a refund"
+    else
+      "is not due a refund"
+    end
   end
 
   def to_s
-    "#{@name}"
+    "#{@id} #{due_refund}"
   end
 end
 
-class PhoneNumber
-  def initialize(name)
-    @name = name
+class Refund
+  def initialize(amount, id)
+    @amount = amount
+    @id = id
   end
 
-  def phone_number
-    case @name
-      when "Chris"
-        01611234567
-      else
-        01610000000
-    end
-  end
-end
-
-class Address
-  def initialize(name)
-    @name = name
-  end
-
-  def address
-    case @name
-      when "Chris"
-        "1 Park Square"
-      else
-        "An address"
-    end
+  def due_refund
+    @amount < 10
   end
 end
