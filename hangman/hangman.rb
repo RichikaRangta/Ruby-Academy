@@ -1,15 +1,15 @@
 class Hangman
   def initialize(word)
-    @temp = Correct.new([])
+    @correct_guesses = Correct.new([])
     @word = Word.new(word)
-    @correctly_guessed = @temp.correct
-    @incorrectly_guessed = []
+    @temp = Incorrect.new([])
+    @incorrectly_guessed = @temp.incorrect
   end
 
   def show_word
     answer = []
     @word.to_a.each do |letter|
-      if @correctly_guessed.include?(letter)
+      if @correct_guesses.includes?(letter)
         answer << letter
       else
         answer << '_'
@@ -19,31 +19,31 @@ class Hangman
   end
 
   def guess(letter)
-    if @correctly_guessed.include?(letter) || @incorrectly_guessed.include?(letter)
+    if @correct_guesses.includes?(letter) || @temp.includes?(letter)
       "Already guessed"
     else
       if @word.to_a.include?(letter)
-        @correctly_guessed << letter
+        @correct_guesses.add_to_array(letter)
       else
-        @incorrectly_guessed << letter
+        @temp.add_to_array(letter)
       end
     end
   end
 
   def finished?
-    if @correctly_guessed.length == @word.word.length
+    if @correct_guesses.length == @word.word.length
       "You win!"
-    elsif @incorrectly_guessed.length == 10
+    elsif @temp.length == 10
       "Better luck next time"
     end
   end
 
   def lives_left
-    10 - (@incorrectly_guessed.length)
+    10 - (@temp.length)
   end
 
   def guessed_letters
-    @incorrectly_guessed.join(',')
+    @temp.join
   end
 end
 
@@ -68,5 +68,37 @@ class Correct
 
   def add_to_array(value)
     @correct << value
+  end
+
+  def length
+    @correct.length
+  end
+
+  def includes?(letter)
+    @correct.include?(letter)
+  end
+end
+
+class Incorrect
+  attr_reader :incorrect
+
+  def initialize(array)
+    @incorrect = array
+  end
+
+  def add_to_array(value)
+    @incorrect << value
+  end
+
+  def length
+    @incorrect.length
+  end
+
+  def includes?(letter)
+    @incorrect.include?(letter)
+  end
+
+  def join
+    @incorrect.join(',')
   end
 end
